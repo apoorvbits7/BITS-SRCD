@@ -48,7 +48,7 @@ class Uploads extends React.Component {
         // })
         let result = await this.submitFile();
         console.log(result)
-        let url = 'https://srcd-temp.herokuapp.com/check/' + result.id + '/0';
+        let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
         this.props.addFiles(url);
         // allFiles.forEach(f => f.remove());
     }
