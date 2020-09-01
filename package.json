@@ -1,0 +1,27 @@
+{
+  "name": "bits-srcd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blueblackzebra/BITS-SRCD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blueblackzebra/BITS-SRCD/issues"
+  },
+  "homepage": "https://github.com/blueblackzebra/BITS-SRCD#readme",
+  "dependencies": {
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.0",
+    "multer": "^1.4.2"
+  }
+}
