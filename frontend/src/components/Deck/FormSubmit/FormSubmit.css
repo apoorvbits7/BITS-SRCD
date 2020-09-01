@@ -1,0 +1,161 @@
+.formWrapper {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  border-radius: 1%;
+  display: flex;
+  justify-items: flex-start;
+  flex-direction: row;
+  margin: auto;
+  overflow: hidden;
+}
+
+.formWrapper .title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.formWrapper .fields {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: #3b55e6;
+}
+
+.formWrapper .fields a {
+  text-decoration: none;
+}
+
+.formWrapper .fields .heading {
+  color: white;
+  margin-top: 10%;
+  font-size: 1.5rem;
+}
+
+.formWrapper .fields .pages {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  height: 100%;
+  margin-top: 20%;
+}
+
+.formWrapper .fields .pages .pageLabel {
+  color: white;
+  margin-bottom: 5%;
+  padding: 5%;
+  font-size: 1.2rem;
+  transform: translateX(10px);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.formWrapper .fields .pages .active {
+  background-color: white;
+  color: #3b55e6;
+}
+
+.formWrapper .formDetails {
+  width: 70%;
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+.formWrapper .formDetails .inputFields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formWrapper .formDetails .customInput {
+  width: 70%;
+  margin-top: 5%;
+}
+
+.formWrapper .formDetails .formControl {
+  margin-top: 5%;
+}
+
+.formWrapper .formDetails .customSelect {
+  width: 70%;
+  margin-top: 5%;
+  text-align: left;
+}
+
+.formWrapper .formDetails .info {
+  width: 70%;
+  margin-top: 5%;
+  text-align: left;
+  color: #3b55e6;
+}
+
+.formWrapper .formDetails .coInvestigatorsRow {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.formWrapper .formDetails .coInvestigatorsRow .inputField {
+  margin-top: 5%;
+  margin-right: 5%;
+  width: 50%;
+}
+
+.formWrapper .formDetails .coInvestigatorsRow .icons {
+  margin-top: 5%;
+  margin-left: 3%;
+  color: #3b55e6;
+  cursor: pointer;
+}
+
+.formWrapper .formDetails .nextButton {
+  background-color: #3b55e6;
+  color: white;
+  padding: 2%;
+  width: 10%;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.formWrapper .formDetails .nextButtonDisabled {
+  background-color: grey;
+  color: white;
+  padding: 2%;
+  width: 10%;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.formWrapper .formDetails .lastRow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+/* width */
+.formWrapper ::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+.formWrapper ::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+.formWrapper ::-webkit-scrollbar-thumb {
+  background: #508ff4;
+  border-radius: 10%;
+}
+
+/* Handle on hover */
+.formWrapper ::-webkit-scrollbar-thumb:hover {
+  background: #508ff4;
+}
