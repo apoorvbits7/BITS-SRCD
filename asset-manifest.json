@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/BITS-SRCD/static/css/main.e68c7037.chunk.css",
-    "main.js": "/BITS-SRCD/static/js/main.1a8901e6.chunk.js",
-    "main.js.map": "/BITS-SRCD/static/js/main.1a8901e6.chunk.js.map",
+    "main.js": "/BITS-SRCD/static/js/main.80a43266.chunk.js",
+    "main.js.map": "/BITS-SRCD/static/js/main.80a43266.chunk.js.map",
     "runtime-main.js": "/BITS-SRCD/static/js/runtime-main.650de46a.js",
     "runtime-main.js.map": "/BITS-SRCD/static/js/runtime-main.650de46a.js.map",
     "static/css/2.bf89e302.chunk.css": "/BITS-SRCD/static/css/2.bf89e302.chunk.css",
     "static/js/2.b695513d.chunk.js": "/BITS-SRCD/static/js/2.b695513d.chunk.js",
     "static/js/2.b695513d.chunk.js.map": "/BITS-SRCD/static/js/2.b695513d.chunk.js.map",
     "index.html": "/BITS-SRCD/index.html",
-    "precache-manifest.e22fbbf2ade0b6225ea765908d6094df.js": "/BITS-SRCD/precache-manifest.e22fbbf2ade0b6225ea765908d6094df.js",
+    "precache-manifest.9c07be5ee74cb5fb75e68f5751afe8cc.js": "/BITS-SRCD/precache-manifest.9c07be5ee74cb5fb75e68f5751afe8cc.js",
     "service-worker.js": "/BITS-SRCD/service-worker.js",
     "static/css/2.bf89e302.chunk.css.map": "/BITS-SRCD/static/css/2.bf89e302.chunk.css.map",
     "static/css/main.e68c7037.chunk.css.map": "/BITS-SRCD/static/css/main.e68c7037.chunk.css.map",
@@ -23,6 +23,6 @@
     "static/css/2.bf89e302.chunk.css",
     "static/js/2.b695513d.chunk.js",
     "static/css/main.e68c7037.chunk.css",
-    "static/js/main.1a8901e6.chunk.js"
+    "static/js/main.80a43266.chunk.js"
   ]
 }

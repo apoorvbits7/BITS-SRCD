@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a07345d33dfa2301aeb9a34e7affff22",
+    "revision": "8f5b696d3ef1447532559edd4fc95147",
     "url": "/BITS-SRCD/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BITS-SRCD/static/css/2.bf89e302.chunk.css"
   },
   {
-    "revision": "48a1f861641015529929",
+    "revision": "c00aa21074f70cbb3ebd",
     "url": "/BITS-SRCD/static/css/main.e68c7037.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BITS-SRCD/static/js/2.b695513d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "48a1f861641015529929",
-    "url": "/BITS-SRCD/static/js/main.1a8901e6.chunk.js"
+    "revision": "c00aa21074f70cbb3ebd",
+    "url": "/BITS-SRCD/static/js/main.80a43266.chunk.js"
   },
   {
     "revision": "302f9a554392235458c3",
