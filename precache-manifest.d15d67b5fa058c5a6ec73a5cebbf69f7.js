@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5f1c2e16cee4051229250784af434bfc",
+    "revision": "8d3c04f7691dfc53648d6cab1bf673d7",
     "url": "/BITS-SRCD/index.html"
   },
   {
