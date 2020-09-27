@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/BITS-SRCD/static/css/main.e68c7037.chunk.css",
-    "main.js": "/BITS-SRCD/static/js/main.80a43266.chunk.js",
-    "main.js.map": "/BITS-SRCD/static/js/main.80a43266.chunk.js.map",
+    "main.css": "/BITS-SRCD/static/css/main.bf3c1839.chunk.css",
+    "main.js": "/BITS-SRCD/static/js/main.eddd2d60.chunk.js",
+    "main.js.map": "/BITS-SRCD/static/js/main.eddd2d60.chunk.js.map",
     "runtime-main.js": "/BITS-SRCD/static/js/runtime-main.650de46a.js",
     "runtime-main.js.map": "/BITS-SRCD/static/js/runtime-main.650de46a.js.map",
-    "static/css/2.bf89e302.chunk.css": "/BITS-SRCD/static/css/2.bf89e302.chunk.css",
-    "static/js/2.b695513d.chunk.js": "/BITS-SRCD/static/js/2.b695513d.chunk.js",
-    "static/js/2.b695513d.chunk.js.map": "/BITS-SRCD/static/js/2.b695513d.chunk.js.map",
+    "static/css/2.8d51f9e7.chunk.css": "/BITS-SRCD/static/css/2.8d51f9e7.chunk.css",
+    "static/js/2.510418df.chunk.js": "/BITS-SRCD/static/js/2.510418df.chunk.js",
+    "static/js/2.510418df.chunk.js.map": "/BITS-SRCD/static/js/2.510418df.chunk.js.map",
     "index.html": "/BITS-SRCD/index.html",
-    "precache-manifest.9c07be5ee74cb5fb75e68f5751afe8cc.js": "/BITS-SRCD/precache-manifest.9c07be5ee74cb5fb75e68f5751afe8cc.js",
+    "precache-manifest.ea4e0b666743286ca5a74613dfc22bb6.js": "/BITS-SRCD/precache-manifest.ea4e0b666743286ca5a74613dfc22bb6.js",
     "service-worker.js": "/BITS-SRCD/service-worker.js",
-    "static/css/2.bf89e302.chunk.css.map": "/BITS-SRCD/static/css/2.bf89e302.chunk.css.map",
-    "static/css/main.e68c7037.chunk.css.map": "/BITS-SRCD/static/css/main.e68c7037.chunk.css.map",
-    "static/js/2.b695513d.chunk.js.LICENSE.txt": "/BITS-SRCD/static/js/2.b695513d.chunk.js.LICENSE.txt",
+    "static/css/2.8d51f9e7.chunk.css.map": "/BITS-SRCD/static/css/2.8d51f9e7.chunk.css.map",
+    "static/css/main.bf3c1839.chunk.css.map": "/BITS-SRCD/static/css/main.bf3c1839.chunk.css.map",
+    "static/js/2.510418df.chunk.js.LICENSE.txt": "/BITS-SRCD/static/js/2.510418df.chunk.js.LICENSE.txt",
     "static/media/Sample1.pdf": "/BITS-SRCD/static/media/Sample1.ac887726.pdf",
     "static/media/bits-logo.png": "/BITS-SRCD/static/media/bits-logo.47542b3a.png",
     "static/media/profilePic.jpg": "/BITS-SRCD/static/media/profilePic.f374e2f5.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.650de46a.js",
-    "static/css/2.bf89e302.chunk.css",
-    "static/js/2.b695513d.chunk.js",
-    "static/css/main.e68c7037.chunk.css",
-    "static/js/main.80a43266.chunk.js"
+    "static/css/2.8d51f9e7.chunk.css",
+    "static/js/2.510418df.chunk.js",
+    "static/css/main.bf3c1839.chunk.css",
+    "static/js/main.eddd2d60.chunk.js"
   ]
 }
