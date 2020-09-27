@@ -13,7 +13,26 @@ const subSchema= new mongoose.Schema({
         type: Buffer,
         required: true
     },
-    revComments: {
+    designation: {
+        type: String
+    },
+    department: {
+        type: String
+    },
+    institute: {
+        type: String
+    },
+    reviewerOneName: {
+        type: String
+    },
+    reviewerTwoName: {
+        type: String
+    },
+    revCommentsOne: {
+        type: Buffer,
+        required: true
+    },
+    revCommentsTwo: {
         type: Buffer,
         required: true
     },
@@ -46,7 +65,10 @@ const subSchema= new mongoose.Schema({
     },
     comment: {
         type: String
-    }
+    },
+    // lastDate: {
+    //     type: Date
+    // }
 
 })
 
@@ -54,7 +76,8 @@ subSchema.methods.toJSON = function () {
     const sub=this
     const subObj=sub.toObject()
     delete subObj.projProp
-    delete subObj.revComments
+    delete subObj.revCommentsOne
+    delete subObj.revCommentsTwo
     delete subObj.endoCert
 
     return subObj

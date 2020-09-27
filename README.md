@@ -1,24 +1,105 @@
 # BITS-SRCD
 
-## The setup for now
+## Root Path
 
-https://srcd-temp.herokuapp.com/submit 
-This URL accepts a POST request. 
-Specify enctype="multipart/form-data" in the form you might use to submit the POST request. 
-Fields and datatype expected :-
-1. 'docs' -> Expects any number of pdf files
-2. 'title' -> Expects a string
+`https://srcd-temp.herokuapp.com`
 
-On unsuccessful execution, HTTP status 500 will be returned.
-On successful execution, HTTP status 200 will be returned with JSON data having the following fields
-id -> Object ID generated for that submission
-title -> Title returned back
-count -> Number of documents in the submission
+Optional data fields enclosed in [  ]
 
+## User Endpoints
 
-https://srcd-temp.herokuapp.com/check/:id/:num
-This URL accepts a GET request and returns a single pdf of the submission with Object ID == id.
-All the pdfs can be accessed by changing value of num from 0 to count-1 (count of the corresspong submission)
+### Make new user (first login)
 
-The previously sent data on submission and requests to this endpoint would be enough to display all the data of a submission.
+`<root>/user/new`
 
+Expected request type: `POST`
+
+Expected data type: `JSON / key-value pair`
+
+Expected data fields: `name :String , email :String`
+
+Success return code: `HTTP status code 201`
+
+Error return code: `HTTP status code 400`
+
+### Get user (along with their subs)
+
+`<root>/user/me`
+
+Expected request type: `POST`
+
+Expected data type: `JSON / key-value pair`
+
+Expected data fields: `email :String`
+
+Success return code: `HTTP status code 200`
+
+Success return data: `Array of all Submission objects of user`
+
+Error return code: `HTTP status code 400`
+
+## Submission Endpoints
+
+### Make new submission
+
+`<root>/sub/submit`
+
+Expected request type: `POST`
+
+Expected data type: `Encrypted form data`
+
+Expected data fields: `title :String , funding :String , prinInvest :String , email: String , projProp :Single pdf file , endoCert :Single pdf file , revCommentsOne :Single pdf file, revCommentsTwo: Single pdf file, [coInvest :Array of strings]`
+
+Success return code: `HTTP status code 200`
+
+Error return code: `HTTP status code 500`
+
+### Get documents of a submission
+
+`<root>/sub/:id/:num`
+
+Expected request type: `GET`
+
+Expected data type: `Url parameters`
+
+Expected data fields: `id of Submission, num -> 0 for projProp, 1 for revCommentsOne, 2 for revCommentsTwo, 3 for endoCert`
+
+Success return code: `HTTP status code 200`
+
+Success return data: `PDF data`
+
+Error return code: `HTTP status code 404/500`
+
+## Admin Endpoints
+
+### Mark a submission as approved
+
+`<root>/admin/mark/:id`
+
+Expected request type: `PATCH`
+
+Expected data type: `None`
+
+Expected data fields: `None`
+
+Success return code: `HTTP status code 200`
+
+Success return data: `None (fires off email)`
+
+Error return code: `HTTP status code 400`
+
+### Comment on a submission
+
+`<root>/admin/comment/:id`
+
+Expected request type: `PATCH`
+
+Expected data type: `JSON / key-value pair`
+
+Expected data fields: `comment: String`
+
+Success return code: `HTTP status code 200`
+
+Success return data: `None (fires off email)`
+
+Error return code: `HTTP status code 400`

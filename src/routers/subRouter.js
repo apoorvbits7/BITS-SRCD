@@ -7,7 +7,7 @@ const User=require('../models/user')
 
 const pdfSub = multer()
 
-let upload=pdfSub.fields([{name:'projProp'}, {name:'endoCert'}, {name:'revComments'}])
+let upload=pdfSub.fields([{name:'projProp'}, {name:'endoCert'}, {name:'revCommentsOne'}, {name:'revCommentsTwo'} ])
 
 router.post('/sub/submit', upload, async (req, res) => {
     try {
@@ -37,11 +37,19 @@ router.post('/sub/submit', upload, async (req, res) => {
 
         tempObj.owner=user.id
 
+        // let today= new Date()
+
+        // let d=""+today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate()
+
+        // console.log(d)
+
         const subObj = {
             ...tempObj,
             projProp: req.files['projProp'][0].buffer,
-            revComments: req.files['revComments'][0].buffer,
-            endoCert: req.files['endoCert'][0].buffer
+            revCommentsOne: req.files['revCommentsOne'][0].buffer,
+            revCommentsTwo: req.files['revCommentsTwo'][0].buffer,
+            endoCert: req.files['endoCert'][0].buffer,
+            // lastDate: d
         }
 
         const sub=new Sub(subObj);
@@ -50,6 +58,7 @@ router.post('/sub/submit', upload, async (req, res) => {
         res.status(200).send({id: sub.id});
 
     } catch (e) {
+        console.log(e)
         res.status(500).send();
     }
 })
@@ -70,9 +79,12 @@ router.get('/sub/:id/:num',async(req, res)=> {
             res.send(sub.projProp)
         }
         else if (req.params.num==1){
-            res.send(sub.revComments)
+            res.send(sub.revCommentsOne)
         }
         else if (req.params.num==2){
+            res.send(sub.revCommentsTwo)
+        }
+        else if (req.params.num==3){
             res.send(sub.endoCert)
         }
         else {

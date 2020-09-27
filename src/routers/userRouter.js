@@ -24,7 +24,7 @@ router.post('/user/new', async (req, res)=> {
 //     }
 // })
 
-router.get('/user/me', async (req, res)=> {
+router.post('/user/me', async (req, res)=> {
     try {
         const user= await User.findOne({email: req.body.email})
         await user.populate('subs').execPopulate()
