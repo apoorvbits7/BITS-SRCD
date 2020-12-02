@@ -1,8 +1,5 @@
 import React from 'react';
 import './Deck.css';
-import InvoicesProcessedCard from './InvoicesProcessedCard/InvoicesProcessedCard';
-import UploadCard from './UploadCard/UploadCard';
-import DownloadCard from './DownloadCard/DownloadCard';
 import Uploader from './Uploader/Uploader';
 import ProcessedTable from './ProcessedTable/ProcessedTable';
 import ProcessedViewer from './ProcessedViewer/ProcessedViewer';
@@ -14,6 +11,7 @@ import PaperDetails from './FormSubmit/PaperDetails';
 import Uploads from './FormSubmit/Uploads';
 import Chatbot from './Chatbot/ChatbotTable';
 import InvoiceViewer from './Chatbot/InvoiceViewer/InvoiceViewer';
+import axios from 'axios';
 
 
 class Deck extends React.Component {
@@ -21,7 +19,7 @@ class Deck extends React.Component {
         return (
             <div className="Deck">
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/BITS-SRCD/deck">
                         <div className="headerRow">
                             {/* <InvoicesProcessedCard />
                             <UploadCard />
@@ -32,19 +30,19 @@ class Deck extends React.Component {
                         {/* <ProcessedViewer /> */}
                         <ProcessedTable />
                     </Route>
-                    <Route path="/admin">
+                    <Route path="/BITS-SRCD/deck/admin">
                         <Query />
                     </Route>
-                    <Route path="/form/paper-details">
+                    <Route path="/BITS-SRCD/deck/form/paper-details">
                         <PaperDetails />
                     </Route>
-                    <Route path="/form/uploads">
+                    <Route path="/BITS-SRCD/deck/form/uploads">
                         <Uploads />
                     </Route>
-                    <Route path="/form">
+                    <Route path="/BITS-SRCD/deck/form">
                         <BasicDetails />
                     </Route>
-                    <Route path="/chatbot">
+                    <Route path="/BITS-SRCD/deck/chatbot">
                         <Chatbot />
                         {this.props.supportDisplay.display == true && <InvoiceViewer />}
                     </Route>
@@ -58,8 +56,20 @@ const mapStateToProps = (state) => {
     return {
         uploaderOpen: state.uploaderOpen,
         previewShow: state.preview.show,
-        supportDisplay: state.supportDisplay
+        supportDisplay: state.supportDisplay,
+        admin: state.admin
     }
 }
 
-export default connect(mapStateToProps)(Deck);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        adminInit: (files) => {
+            dispatch({
+                type: 'ADMIN_INIT',
+                files: files
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deck);

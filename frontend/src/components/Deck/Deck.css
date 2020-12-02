@@ -2,7 +2,7 @@
     width: 82%;
     height: 87%;
     padding: 3%;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .Deck .headerRow {

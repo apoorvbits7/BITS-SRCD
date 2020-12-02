@@ -1,4 +1,4 @@
-.dashboardInfo {
+.infoText {
     background-color: white;
     text-align: left;
     padding: 2%;
@@ -9,11 +9,11 @@
     flex-direction: column;
 }
 
-.dashboardInfo span {
+.infoText span {
     text-align: center;
     width: 100%;
     font-weight: 700;
     font-size: 1.3rem;
 }
 
-.dashboardInfo p {}
+.infoText p {}

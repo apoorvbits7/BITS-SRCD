@@ -5,6 +5,7 @@ import { useTable, useSortBy, usePagination } from 'react-table';
 import "./ProcessedTable.css";
 import Loader from './Loader/Loader';
 import { connect } from 'react-redux';
+import InfoText from '../InfoText/InfoText'
 
 const Styles = styled.div`
   ${'' /* padding: 1rem; */}
@@ -134,6 +135,7 @@ function ProcessedTable(props) {
 
     return (
         <Styles>
+            <InfoText category="dashboard" />
             <Table columns={columns} data={
                 props.files.length == 0 ?
                     [{ sno: '-', status: '-', title: '-', url: '-', date: '-' }] :

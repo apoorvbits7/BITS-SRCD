@@ -25,7 +25,7 @@
 .uploader .header {
     height: 5%;
     width: 100%;
-    background-color: #508ff4;
+    background-color: #4A598C;
     text-align: right;
 }
 
@@ -41,11 +41,11 @@
 
 /* Handle */
 .uploader ::-webkit-scrollbar-thumb {
-    background: #508ff4;
+    background: #4A598C;
     border-radius: 10%;
 }
 
 /* Handle on hover */
 .uploader ::-webkit-scrollbar-thumb:hover {
-    background: #508ff4;
+    background: #4A598C;
 }

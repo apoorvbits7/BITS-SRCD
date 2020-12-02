@@ -1,6 +1,6 @@
 .formWrapper {
   background-color: white;
-  width: 90%;
+  width: 100%;
   height: 90%;
   border-radius: 1%;
   display: flex;
@@ -8,6 +8,7 @@
   flex-direction: row;
   margin: auto;
   overflow: hidden;
+  margin-bottom: 5%;
 }
 
 .formWrapper .title {
@@ -19,7 +20,7 @@
   width: 30%;
   display: flex;
   flex-direction: column;
-  background-color: #3b55e6;
+  background-color: #4A598C;
 }
 
 .formWrapper .fields a {
@@ -53,7 +54,7 @@
 
 .formWrapper .fields .pages .active {
   background-color: white;
-  color: #3b55e6;
+  color: #4A598C;
 }
 
 .formWrapper .formDetails {
@@ -90,7 +91,7 @@
   width: 70%;
   margin-top: 5%;
   text-align: left;
-  color: #3b55e6;
+  color: #4A598C;
 }
 
 .formWrapper .formDetails .coInvestigatorsRow {
@@ -98,23 +99,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .formWrapper .formDetails .coInvestigatorsRow .inputField {
   margin-top: 5%;
   margin-right: 5%;
-  width: 50%;
+  width: 40%;
 }
 
 .formWrapper .formDetails .coInvestigatorsRow .icons {
   margin-top: 5%;
   margin-left: 3%;
-  color: #3b55e6;
+  color: #4A598C;
   cursor: pointer;
 }
 
 .formWrapper .formDetails .nextButton {
-  background-color: #3b55e6;
+  background-color: #4A598C;
   color: white;
   padding: 2%;
   width: 10%;
@@ -151,11 +153,20 @@
 
 /* Handle */
 .formWrapper ::-webkit-scrollbar-thumb {
-  background: #508ff4;
+  background: #4A598C;
   border-radius: 10%;
 }
 
 /* Handle on hover */
 .formWrapper ::-webkit-scrollbar-thumb:hover {
-  background: #508ff4;
+  background: #4A598C;
+}
+
+._loading_overlay_wrapper--active {
+  position: fixed !important;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
 }

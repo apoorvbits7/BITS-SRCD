@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 class Query extends React.Component {
     constructor(props) {
@@ -18,7 +19,12 @@ class Query extends React.Component {
                     return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
                 }
             }, {
-                headerName: "Comments", field: "comments",
+                headerName: "Comments 1", field: "commentsOne",
+                cellRenderer: function (params) {
+                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                }
+            }, {
+                headerName: "Comments 2", field: "commentsTwo",
                 cellRenderer: function (params) {
                     return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
                 }
@@ -29,48 +35,98 @@ class Query extends React.Component {
                 }
             }, {
                 headerName: "Status", field: "status", sortable: true, filter: true
+            },
+            {
+                headerName: "Reply", field: "reply",
+                cellRenderer: function (params) {
+                    var eDiv = document.createElement('div');
+                    eDiv.innerHTML = `<a href="#">` + 'Send Email' + `</a>`;
+                    eDiv.addEventListener('click', function () {
+                        console.log(params.value)
+                        Swal.fire({
+                            title: 'Enter the message you wish to send!',
+                            input: 'textarea',
+                            inputAttributes: {
+                                autocapitalize: 'off'
+                            },
+                            showCancelButton: true,
+                            confirmButtonText: 'Send',
+                            showLoaderOnConfirm: true,
+                            preConfirm: (text) => {
+                                return axios.patch('https://srcd-temp.herokuapp.com/admin/comment/' + params.value, {
+                                    comment: text
+                                }).then(result => {
+                                    return result.data;
+                                }).catch(error => {
+                                    Swal.showValidationMessage(
+                                        `Request failed: ${error}`
+                                    )
+                                })
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            Swal.fire(
+                                'Message Sent!',
+                                'Your message has been sent!',
+                                'success'
+                            )
+                        })
+                    })
+                    return eDiv;
+                }
             }],
             rowData: []
         }
     }
+
     async componentDidMount() {
-        // let allUploads = await axios.post('http://localhost:8000/api/getAllUploads', {
-        //     userID: this.props.userID
-        // });
-        // let allUploadsProcessed = allUploads.data.map((upload) => {
-        //     upload.createdAt = new Date(upload.createdAt).toLocaleDateString();
-        //     return upload;
-        // })
-        let allUploadsProcessed = [
-            {
-                author: 'X',
-                proposal: 'www.google.com',
-                comments: 'www.google.com',
-                endorsments: 'www.google.com',
-                status: 'Pending'
-            },
-            {
-                author: 'Y',
-                proposal: 'www.google.com',
-                comments: 'www.google.com',
-                endorsments: 'www.google.com',
-                status: 'Pending'
-            },
-            {
-                author: 'Y',
-                proposal: 'www.google.com',
-                comments: 'www.google.com',
-                endorsments: 'www.google.com',
-                status: 'Pending'
-            },
-            {
-                author: 'X',
-                proposal: 'www.google.com',
-                comments: 'www.google.com',
-                endorsments: 'www.google.com',
-                status: 'Pending'
-            },
-        ]
+        let allUploads = await axios.get('https://srcd-temp.herokuapp.com/admin/all');
+        let counter = 0
+        let allUploadsProcessed = allUploads.data.map((upload) => {
+            counter += 1
+            return {
+                sno: counter,
+                title: upload.title,
+                status: upload.status == true ? '✅Processed' : 'Waiting',
+                author: upload.prinInvest,
+                proposal: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/0',
+                commentsOne: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/1',
+                commentsTwo: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/2',
+                endorsments: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/3',
+                date: new Date().toLocaleDateString(),
+                reply: upload._id
+            }
+        })
+        // let allUploadsProcessed = [
+        //     {
+        //         author: 'X',
+        //         proposal: 'www.google.com',
+        //         comments: 'www.google.com',
+        //         endorsments: 'www.google.com',
+        //         status: 'Pending'
+        //     },
+        //     {
+        //         author: 'Y',
+        //         proposal: 'www.google.com',
+        //         comments: 'www.google.com',
+        //         endorsments: 'www.google.com',
+        //         status: 'Pending'
+        //     },
+        //     {
+        //         author: 'Y',
+        //         proposal: 'www.google.com',
+        //         comments: 'www.google.com',
+        //         endorsments: 'www.google.com',
+        //         status: 'Pending'
+        //     },
+        //     {
+        //         author: 'X',
+        //         proposal: 'www.google.com',
+        //         comments: 'www.google.com',
+        //         endorsments: 'www.google.com',
+        //         status: 'Pending'
+        //     },
+        // ]
         this.setState({
             rowData: allUploadsProcessed
         })

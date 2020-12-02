@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormNav from './FormNav';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import InfoText from '../InfoText/InfoText';
 
 class BasicDetails extends React.Component {
     constructor(props) {
@@ -20,35 +21,37 @@ class BasicDetails extends React.Component {
 
     render() {
         return (
-            <div className="formWrapper">
-                <FormNav />
-                <div className="formDetails">
-                    <div className="inputFields">
-                        <TextField
-                            id="filled-read-only-input"
-                            label="Full Name"
-                            variant="outlined"
-                            className="customInput"
-                            placeholder="Full Name"
-                            value={this.props.userName}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            variant="filled"
-                        />
-                        <TextField
-                            id="filled-read-only-input"
-                            label="Email"
-                            variant="outlined"
-                            className="customInput"
-                            placeholder="Email"
-                            value={this.props.userEmail}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            variant="filled"
-                        />
-                        {/* <TextField
+            <>
+                <InfoText category="form" />
+                <div className="formWrapper">
+                    <FormNav />
+                    <div className="formDetails">
+                        <div className="inputFields">
+                            <TextField
+                                id="filled-read-only-input"
+                                label="Full Name"
+                                variant="outlined"
+                                className="customInput"
+                                placeholder="Full Name"
+                                value={this.props.userName}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                                variant="filled"
+                            />
+                            <TextField
+                                id="filled-read-only-input"
+                                label="Email"
+                                variant="outlined"
+                                className="customInput"
+                                placeholder="Email"
+                                value={this.props.userEmail}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                                variant="filled"
+                            />
+                            {/* <TextField
                             id="outlined-basic"
                             label="Phone Number"
                             variant="outlined"
@@ -56,29 +59,39 @@ class BasicDetails extends React.Component {
                             placeholder="Phone Number"
                             onChange={(e) => { this.props.editDetails('phoneNumber', e) }}
                         /> */}
-                        <FormControl className="formControl">
-                            <InputLabel id="demo-simple-select-label">Choose your funding call</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                className="customSelect"
-                                value={this.props.fundingCall.selected}
-                                renderValue={() => this.renderValue(this.props.fundingCall.selected)}
-                                onChange={this.props.selectFundingCall}
-                            >
-                                {this.props.fundingCall.options.map(
-                                    (option, index) => <MenuItem value={index}>{option}</MenuItem>
-                                )}
-                            </Select>
-                        </FormControl>
-                    </div>
-                    <div className="lastRow">
-                        <NavLink exact to="/form/paper-details" className="nextButton">
-                            Next
+                            <FormControl className="formControl">
+                                <InputLabel id="demo-simple-select-label">Choose your funding call</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    className="customSelect"
+                                    value={this.props.fundingCall.selected}
+                                    renderValue={() => this.renderValue(this.props.fundingCall.selected)}
+                                    onChange={this.props.selectFundingCall}
+                                >
+                                    {this.props.fundingCall.options.map(
+                                        (option, index) => <MenuItem value={index}>{option}</MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+                            {this.props.fundingCall.selected.includes('Other') && <TextField
+                                id="filled-read-only-input"
+                                label="Please Specify"
+                                variant="outlined"
+                                className="customInput"
+                                placeholder="Email"
+                                value={this.props.fundingCall.others}
+                                onChange={this.props.changeOthers}
+                            />}
+                        </div>
+                        <div className="lastRow">
+                            <NavLink exact to="/BITS-SRCD/deck/form/paper-details" className="nextButton">
+                                Next
                         </NavLink>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     }
 }
@@ -104,6 +117,12 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: 'SELECT_FUNDING_CALL',
                 selectedIndex: e.target.value
+            })
+        },
+        changeOthers: (e) => {
+            dispatch({
+                type: 'FUNDING_CALL_OTHERS',
+                others: e.target.value
             })
         }
     }

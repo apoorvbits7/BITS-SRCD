@@ -1,0 +1,15 @@
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+}
+
+.Login .image {
+  width: 25%;
+}
+
+.Login .googleLogin {
+  margin-top: 3%;
+}
