@@ -46,7 +46,7 @@ class Uploads extends React.Component {
         try {
             result = await axios({
                 method: "POST",
-                url: "https://srcd-temp.herokuapp.com/sub/submit",
+                url: "http://localhost:3100/sub/submit",
                 data: filesData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -71,7 +71,7 @@ class Uploads extends React.Component {
         })
         let result = await this.submitFile();
         console.log(result)
-        let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
+        let url = 'http://localhost:3100/sub/' + result.id + '/0';
         this.props.addFiles(url);
         this.setState({
             loading: false
