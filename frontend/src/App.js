@@ -12,6 +12,14 @@ import AppWrapper from './components/AppWrapper/AppWrapper'
 
 
 class App extends React.Component {
+  componentDidMount() {
+    window.onbeforeunload = function () {
+      window.setTimeout(function () {
+        window.location = '/';
+      }, 0);
+      window.onbeforeunload = null; // necessary to prevent infinite loop, that kills your browser 
+    }
+  }
   render() {
     // let jsx = (
     //   <>
