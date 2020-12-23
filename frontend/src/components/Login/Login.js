@@ -12,12 +12,12 @@ class Login extends React.Component {
         let result;
         console.log(response.profileObj.email)
         try {
-            result = await axios.post('https://srcd-temp.herokuapp.com/user/me', {
+            result = await axios.post('http://localhost:3100/user/me', {
                 email: response.profileObj.email
             })
             result = result.data;
         } catch (err) {
-            await axios.post('https://srcd-temp.herokuapp.com/user/new', {
+            await axios.post('http://localhost:3100/user/new', {
                 email: response.profileObj.email,
                 name: response.profileObj.name
             })

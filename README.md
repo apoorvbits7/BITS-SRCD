@@ -2,9 +2,9 @@
 
 ## Root Path
 
-`https://srcd-temp.herokuapp.com`
+`http://localhost:3100`
 
-Optional data fields enclosed in [  ]
+Optional data fields enclosed in [ ]
 
 ## User Endpoints
 
