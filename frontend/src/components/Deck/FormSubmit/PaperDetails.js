@@ -150,7 +150,7 @@ class PaperDetails extends React.Component {
                         </div>
                     </div> */}
                         <div className="lastRow">
-                            <NavLink exact to="/BITS-SRCD/deck/form/uploads" className="nextButton">
+                            <NavLink exact to="/deck/form/uploads" className="nextButton">
                                 Next
                         </NavLink>
                         </div>

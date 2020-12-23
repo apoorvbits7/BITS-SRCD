@@ -14,6 +14,14 @@ class Query extends React.Component {
             columnDefs: [{
                 headerName: "Principle Invest.", field: "author", sortable: true, filter: true
             }, {
+                headerName: "Department", field: "department", sortable: true, filter: true
+            }, {
+                headerName: "Designation", field: "designation", sortable: true, filter: true
+            }, {
+                headerName: "Institute", field: "institute", sortable: true, filter: true
+            }, {
+                headerName: "Funding", field: "funding", sortable: true, filter: true
+            }, {
                 headerName: "Proposal", field: "proposal",
                 cellRenderer: function (params) {
                     return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
@@ -53,7 +61,7 @@ class Query extends React.Component {
                             confirmButtonText: 'Send',
                             showLoaderOnConfirm: true,
                             preConfirm: (text) => {
-                                return axios.patch('http://localhost:3100/admin/comment/' + params.value, {
+                                return axios.patch('https://srcd-temp.herokuapp.com/admin/comment/' + params.value, {
                                     comment: text
                                 }).then(result => {
                                     return result.data;
@@ -65,11 +73,14 @@ class Query extends React.Component {
                             },
                             allowOutsideClick: () => !Swal.isLoading()
                         }).then((result) => {
-                            Swal.fire(
-                                'Message Sent!',
-                                'Your message has been sent!',
-                                'success'
-                            )
+                            console.log(result);
+                            if (!result.isDismissed) {
+                                Swal.fire(
+                                    'Message Sent!',
+                                    'Your message has been sent!',
+                                    'success'
+                                )
+                            }
                         })
                     })
                     return eDiv;
@@ -80,7 +91,7 @@ class Query extends React.Component {
     }
 
     async componentDidMount() {
-        let allUploads = await axios.get('http://localhost:3100/admin/all');
+        let allUploads = await axios.get('https://srcd-temp.herokuapp.com/admin/all');
         let counter = 0
         let allUploadsProcessed = allUploads.data.map((upload) => {
             counter += 1
@@ -89,12 +100,17 @@ class Query extends React.Component {
                 title: upload.title,
                 status: upload.status == true ? '✅Processed' : 'Waiting',
                 author: upload.prinInvest,
-                proposal: 'http://localhost:3100/sub/' + upload._id + '/0',
-                commentsOne: 'http://localhost:3100/sub/' + upload._id + '/1',
-                commentsTwo: 'http://localhost:3100/sub/' + upload._id + '/2',
-                endorsments: 'http://localhost:3100/sub/' + upload._id + '/3',
+                proposal: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/0',
+                commentsOne: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/1',
+                commentsTwo: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/2',
+                endorsments: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/3',
                 date: new Date().toLocaleDateString(),
-                reply: upload._id
+                reply: upload._id,
+                department: upload.department,
+                designation: upload.designation,
+                funding: upload.funding,
+                institute: upload.institute,
+                original: upload
             }
         })
         // let allUploadsProcessed = [
@@ -130,21 +146,33 @@ class Query extends React.Component {
         this.setState({
             rowData: allUploadsProcessed
         })
-        this.refs.agGrid.api.sizeColumnsToFit()
+        // this.refs.agGrid.api.sizeColumnsToFit()
+    }
+    rowClickHandle = (e) => {
+        console.log(e);
+        // Swal.fire({
+        //     title: '<strong>HTML <u>example</u></strong>',
+        //     icon: 'info',
+        //     html:
+        //         'The entire object' +
+        //         `<div><pre>${JSON.stringify(e.data.original, null, 2)}</pre></div>`,
+        //     showCloseButton: true
+        // })
     }
     render() {
         return (
             <div
                 className="ag-theme-alpine"
                 style={{
-                    height: '90%',
-                    width: '100%'
+                    height: '90%'
                 }}
             >
                 <AgGridReact
                     ref="agGrid"
                     columnDefs={this.state.columnDefs}
-                    rowData={this.state.rowData}>
+                    rowData={this.state.rowData}
+                    suppressHorizontalScroll={false}
+                    onRowClicked={this.rowClickHandle}>
                 </AgGridReact>
             </div>
         );

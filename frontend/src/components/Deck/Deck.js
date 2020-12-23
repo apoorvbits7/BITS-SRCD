@@ -19,7 +19,7 @@ class Deck extends React.Component {
         return (
             <div className="Deck">
                 <Switch>
-                    <Route exact path="/BITS-SRCD/deck">
+                    <Route exact path="/deck">
                         <div className="headerRow">
                             {/* <InvoicesProcessedCard />
                             <UploadCard />
@@ -30,19 +30,19 @@ class Deck extends React.Component {
                         {/* <ProcessedViewer /> */}
                         <ProcessedTable />
                     </Route>
-                    <Route path="/BITS-SRCD/deck/admin">
+                    <Route path="/deck/admin">
                         <Query />
                     </Route>
-                    <Route path="/BITS-SRCD/deck/form/paper-details">
+                    <Route path="/deck/form/paper-details">
                         <PaperDetails />
                     </Route>
-                    <Route path="/BITS-SRCD/deck/form/uploads">
+                    <Route path="/deck/form/uploads">
                         <Uploads />
                     </Route>
-                    <Route path="/BITS-SRCD/deck/form">
+                    <Route path="/deck/form">
                         <BasicDetails />
                     </Route>
-                    <Route path="/BITS-SRCD/deck/chatbot">
+                    <Route path="/deck/chatbot">
                         <Chatbot />
                         {this.props.supportDisplay.display == true && <InvoiceViewer />}
                     </Route>

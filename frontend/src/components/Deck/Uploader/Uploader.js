@@ -27,7 +27,7 @@ class Uploader extends React.Component {
         })
         let result = await axios({
             method: "POST",
-            url: "http://localhost:3100/submit",
+            url: "https://srcd-temp.herokuapp.com/submit",
             data: filesData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -43,7 +43,7 @@ class Uploader extends React.Component {
             return file.file;
         })
         let result = await this.submitFile(newFiles);
-        let url = 'http://localhost:3100/check/' + result.id + '/0';
+        let url = 'https://srcd-temp.herokuapp.com/check/' + result.id + '/0';
         this.props.addFiles(url);
         allFiles.forEach(f => f.remove());
     }

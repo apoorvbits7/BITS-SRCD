@@ -12,12 +12,12 @@ class Login extends React.Component {
         let result;
         console.log(response.profileObj.email)
         try {
-            result = await axios.post('http://localhost:3100/user/me', {
+            result = await axios.post('https://srcd-temp.herokuapp.com/user/me', {
                 email: response.profileObj.email
             })
             result = result.data;
         } catch (err) {
-            await axios.post('http://localhost:3100/user/new', {
+            await axios.post('https://srcd-temp.herokuapp.com/user/new', {
                 email: response.profileObj.email,
                 name: response.profileObj.name
             })
@@ -26,14 +26,14 @@ class Login extends React.Component {
         console.log(response);
         console.log(result);
         let admin = false;
-        if (response.profileObj.email == 'bitssrcd@gmail.com') {
+        if (response.profileObj.email == 'bitssrcd@gmail.com' || response.profileObj.email == 'apoorvsadana@gmail.com') {
             admin = true;
         }
         this.props.login(response.profileObj.email, response.profileObj.name, result, response.profileObj.imageUrl, admin);
         if (admin) {
-            this.props.history.push("/BITS-SRCD/deck/admin");
+            this.props.history.push("/deck/admin");
         } else {
-            this.props.history.push("/BITS-SRCD/deck");
+            this.props.history.push("/deck");
         }
     }
 

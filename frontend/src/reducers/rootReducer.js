@@ -131,7 +131,7 @@ const rootReducer = produce((draft, action) => {
                     sno: counter,
                     title: project.title,
                     status: 'Waiting',
-                    url: 'http://localhost:3100/sub/' + project._id + '/0',
+                    url: 'https://srcd-temp.herokuapp.com/sub/' + project._id + '/0',
                     date: new Date().toLocaleDateString()
                 }
             })
@@ -233,6 +233,7 @@ const rootReducer = produce((draft, action) => {
                 url: action.url,
                 date: new Date().toLocaleDateString()
             })
+            break;
         case "SELECT_FUNDING_CALL":
             draft.fundingCall.selected = original(draft).fundingCall.options[action.selectedIndex]
             break

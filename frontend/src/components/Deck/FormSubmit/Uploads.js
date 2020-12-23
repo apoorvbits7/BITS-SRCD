@@ -9,6 +9,7 @@ import axios from 'axios';
 import LoadingOverlay from 'react-loading-overlay';
 import InfoText from '../InfoText/InfoText';
 import Checkbox from '@material-ui/core/Checkbox';
+import Swal from 'sweetalert2';
 
 class Uploads extends React.Component {
     constructor(props) {
@@ -38,15 +39,25 @@ class Uploads extends React.Component {
         // files.map((file) => {
         //     filesData.append('docs', file);
         // })
+        let coInvest = this.props.coInvestigators;
+        coInvest = coInvest.map((x) => JSON.stringify(x));
+        console.log('THIS IS THE COINVESTORS');
+        console.log(coInvest);
         filesData.append('projProp', allFilesProposal);
         filesData.append('endoCert', allFilesEndor);
         filesData.append('prinInvest', this.props.formDetails.paperAuthors)
-        filesData.append('funding', this.props.fundingCall.selected)
+        if (this.props.fundingCall.selected) {
+            filesData.append('funding', this.props.fundingCall.selected)
+        } else {
+            filesData.append('funding', this.props.fundingCall.others)
+        }
+
+        filesData.append('coInvest', coInvest);
         let result;
         try {
             result = await axios({
                 method: "POST",
-                url: "http://localhost:3100/sub/submit",
+                url: "https://srcd-temp.herokuapp.com/sub/submit",
                 data: filesData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -66,12 +77,36 @@ class Uploads extends React.Component {
         // let newFiles = allFiles.map((file) => {
         //     return file.file;
         // })
+        console.log(this.props.formDetails.paperTitle);
+        console.log(this.props.formDetails.filePipeline.proposal);
+        console.log(this.props.formDetails.filePipeline.edorsements);
+        console.log(this.props.formDetails.paperAuthors)
+        console.log(this.props.formDetails.designation)
+        console.log(this.props.formDetails.department)
+        console.log(this.props.formDetails.institute)
+        if (
+            !this.props.formDetails.paperTitle ||
+            this.props.formDetails.filePipeline.proposal.length == 0 ||
+            this.props.formDetails.filePipeline.edorsements.length == 0 ||
+            !this.props.formDetails.paperAuthors ||
+            !this.props.formDetails.designation ||
+            !this.props.formDetails.department ||
+            !this.props.formDetails.institute ||
+            !this.props.fundingCall.selected
+        ) {
+            Swal.fire(
+                'Missing Fields!',
+                'All fields are necessary. Please fill them before submitting.',
+                'info'
+            );
+            return;
+        }
         this.setState({
             loading: true
         })
         let result = await this.submitFile();
         console.log(result)
-        let url = 'http://localhost:3100/sub/' + result.id + '/0';
+        let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
         this.props.addFiles(url);
         this.setState({
             loading: false
@@ -146,7 +181,7 @@ class Uploads extends React.Component {
                         </div>
                         </div>
                         {/* <div className="lastRow">
-                        <NavLink exact to="/BITS-SRCD/deck/form/paper-details" className="nextButton">
+                        <NavLink exact to="/deck/form/paper-details" className="nextButton">
                             Next
                         </NavLink>
                     </div> */}

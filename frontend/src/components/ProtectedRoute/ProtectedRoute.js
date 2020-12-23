@@ -13,7 +13,7 @@ class ProtectedRoute extends React.Component {
                 render={props => (
                     this.props.email ?
                         <Component {...props} /> :
-                        <Redirect to='/BITS-SRCD/' />
+                        <Redirect to='/' />
                 )}
             />
         )

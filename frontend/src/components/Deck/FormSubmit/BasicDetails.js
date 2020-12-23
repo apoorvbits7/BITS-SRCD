@@ -65,7 +65,7 @@ class BasicDetails extends React.Component {
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     className="customSelect"
-                                    value={this.props.fundingCall.selected}
+                                    value={this.props.fundingCall.selected == undefined ? "" : this.props.fundingCall.selected}
                                     renderValue={() => this.renderValue(this.props.fundingCall.selected)}
                                     onChange={this.props.selectFundingCall}
                                 >
@@ -85,7 +85,7 @@ class BasicDetails extends React.Component {
                             />}
                         </div>
                         <div className="lastRow">
-                            <NavLink exact to="/BITS-SRCD/deck/form/paper-details" className="nextButton">
+                            <NavLink exact to="/deck/form/paper-details" className="nextButton">
                                 Next
                         </NavLink>
                         </div>

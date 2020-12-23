@@ -7,17 +7,17 @@ import { GoogleLogout } from 'react-google-login';
 class Sidebar extends React.Component {
     googleLogout = () => {
         // console.log(window.location)
-        window.location.href = window.location.origin + '/BITS-SRCD/'
+        window.location.href = window.location.origin + '/'
     }
     render() {
         let jsx;
         if (this.props.admin) {
-            jsx = <li className="menuItem"><NavLink to="/BITS-SRCD/deck/admin" activeClassName="active"><i class="fa fa-search" aria-hidden="true"></i>Admin</NavLink></li>;
+            jsx = <li className="menuItem"><NavLink to="/deck/admin" activeClassName="active"><i class="fa fa-search" aria-hidden="true"></i>Admin</NavLink></li>;
         } else {
             jsx = (
                 <>
-                    <li className="menuItem"><NavLink exact to="/BITS-SRCD/deck" activeClassName="active"><i class="fa fa-bar-chart" aria-hidden="true"></i>Dashboard</NavLink></li>
-                    <li className="menuItem"><NavLink to="/BITS-SRCD/deck/form" activeClassName="active"><i class="fa fa-search" aria-hidden="true"></i>New Submission</NavLink></li>
+                    <li className="menuItem"><NavLink exact to="/deck" activeClassName="active"><i class="fa fa-bar-chart" aria-hidden="true"></i>Dashboard</NavLink></li>
+                    <li className="menuItem"><NavLink to="/deck/form" activeClassName="active"><i class="fa fa-search" aria-hidden="true"></i>New Submission</NavLink></li>
                 </>
             )
         }
