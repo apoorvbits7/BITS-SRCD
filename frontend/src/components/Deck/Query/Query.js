@@ -61,7 +61,7 @@ class Query extends React.Component {
                             confirmButtonText: 'Send',
                             showLoaderOnConfirm: true,
                             preConfirm: (text) => {
-                                return axios.patch('http://172.24.16.87.xip.io:5000/admin/comment/' + params.value, {
+                                return axios.patch('http://172.24.16.87.xip.io:3100/admin/comment/' + params.value, {
                                     comment: text
                                 }).then(result => {
                                     return result.data;
@@ -91,7 +91,7 @@ class Query extends React.Component {
     }
 
     async componentDidMount() {
-        let allUploads = await axios.get('http://172.24.16.87.xip.io:5000/admin/all');
+        let allUploads = await axios.get('http://172.24.16.87.xip.io:3100/admin/all');
         let counter = 0
         let allUploadsProcessed = allUploads.data.map((upload) => {
             counter += 1
@@ -100,10 +100,10 @@ class Query extends React.Component {
                 title: upload.title,
                 status: upload.status == true ? '✅Processed' : 'Waiting',
                 author: upload.prinInvest,
-                proposal: 'http://172.24.16.87.xip.io:5000/sub/' + upload._id + '/0',
-                commentsOne: 'http://172.24.16.87.xip.io:5000/sub/' + upload._id + '/1',
-                commentsTwo: 'http://172.24.16.87.xip.io:5000/sub/' + upload._id + '/2',
-                endorsments: 'http://172.24.16.87.xip.io:5000/sub/' + upload._id + '/3',
+                proposal: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/0',
+                commentsOne: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/1',
+                commentsTwo: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/2',
+                endorsments: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/3',
                 date: new Date().toLocaleDateString(),
                 reply: upload._id,
                 department: upload.department,
