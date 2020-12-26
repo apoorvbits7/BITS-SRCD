@@ -10,6 +10,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import InfoText from '../InfoText/InfoText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Swal from 'sweetalert2';
+import cogoToast from 'cogo-toast';
 
 class Uploads extends React.Component {
     constructor(props) {
@@ -41,8 +42,6 @@ class Uploads extends React.Component {
         // })
         let coInvest = this.props.coInvestigators;
         coInvest = coInvest.map((x) => JSON.stringify(x));
-        console.log('THIS IS THE COINVESTORS');
-        console.log(coInvest);
         filesData.append('projProp', allFilesProposal);
         filesData.append('endoCert', allFilesEndor);
         filesData.append('prinInvest', this.props.formDetails.paperAuthors)
@@ -57,7 +56,7 @@ class Uploads extends React.Component {
         try {
             result = await axios({
                 method: "POST",
-                url: "http://172.24.16.87.xip.io:3100/sub/submit",
+                url: "https://srcd-temp.herokuapp.com/sub/submit",
                 data: filesData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -66,7 +65,6 @@ class Uploads extends React.Component {
         } catch (err) {
             console.log(err)
         }
-        console.log(result.data);
         return result.data;
     }
 
@@ -77,13 +75,9 @@ class Uploads extends React.Component {
         // let newFiles = allFiles.map((file) => {
         //     return file.file;
         // })
-        console.log(this.props.formDetails.paperTitle);
-        console.log(this.props.formDetails.filePipeline.proposal);
-        console.log(this.props.formDetails.filePipeline.edorsements);
-        console.log(this.props.formDetails.paperAuthors)
-        console.log(this.props.formDetails.designation)
-        console.log(this.props.formDetails.department)
-        console.log(this.props.formDetails.institute)
+        if (this.state.loading == true) {
+            return;
+        }
         if (
             !this.props.formDetails.paperTitle ||
             this.props.formDetails.filePipeline.proposal.length == 0 ||
@@ -101,17 +95,45 @@ class Uploads extends React.Component {
             );
             return;
         }
+        if (!this.props.experiencedFaculty &&
+            (this.props.formDetails.filePipeline.commentsOne.length == 0 ||
+                this.props.formDetails.filePipeline.commentsTwo.length == 0 ||
+                !this.props.formDetails.reviewerOneName ||
+                !this.props.formDetails.reviewerTwoName)
+        ) {
+            Swal.fire(
+                'Missing Fields!',
+                'All fields are necessary. Please fill them before submitting.',
+                'info'
+            );
+            return;
+        }
         this.setState({
             loading: true
         })
-        let result = await this.submitFile();
-        console.log(result)
-        let url = 'http://172.24.16.87.xip.io:3100/sub/' + result.id + '/0';
-        this.props.addFiles(url);
-        this.setState({
-            loading: false
-        })
-        // allFiles.forEach(f => f.remove());
+        cogoToast.loading('Submitting...')
+            .then(async () => {
+                let result = await this.submitFile();
+                let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
+                this.props.addFiles(url);
+                this.setState({
+                    loading: false
+                })
+                cogoToast.success('Submitted Succesfully!');
+            })
+            .catch(() => {
+                this.setState({
+                    loading: false
+                })
+                cogoToast.error('Oops! Something went wrong. Please try again...');
+            });
+        // let result = await this.submitFile();
+        // console.log(result)
+        // let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
+        // this.props.addFiles(url);
+        // this.setState({
+        //     loading: false
+        // })
     }
 
     render() {
@@ -120,7 +142,7 @@ class Uploads extends React.Component {
             <>
                 <InfoText category="form" />
                 <div className="formWrapper">
-                    <LoadingOverlay
+                    {/* <LoadingOverlay
                         active={this.state.loading}
                         spinner
                         text='Submitting...'
@@ -131,7 +153,8 @@ class Uploads extends React.Component {
                             height: '100%'
                         }}
                     >
-                    </LoadingOverlay>
+                    </LoadingOverlay> */}
+                    {this.state.loading && <div style={{ position: 'fixed', height: '100%', width: '100%', backgroundColor: 'black', opacity: '0.5', top: 0, left: 0, zIndex: 100 }}></div>}
                     <FormNav />
                     <div className="formDetails">
                         <div className="inputFields">

@@ -133,7 +133,6 @@ function ChatbotTable(props) {
             },
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
-            console.log(result);
             if (result.value) {
                 Swal.fire(
                     'Message Sent!',
@@ -152,7 +151,6 @@ function ChatbotTable(props) {
                         Header: 'Phone Number',
                         accessor: 'phoneNumber',
                         Cell: (props) => {
-                            console.log(props.value)
                             return <span>{props.value == undefined ? '-' : props.value}</span>
                         }
                     },

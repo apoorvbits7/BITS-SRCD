@@ -175,7 +175,6 @@ const mapDispatchToProps = (dispatch) => {
             obj.type = "FORM_DETAILS_CHANGE";
             if (field == 'lastDate') {
                 obj[field] = e;
-                console.log(e);
             } else {
                 obj[field] = e.target.value;
             }

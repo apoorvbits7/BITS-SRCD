@@ -5,8 +5,6 @@ import { Redirect, Route } from 'react-router-dom';
 class ProtectedRoute extends React.Component {
     render() {
         const { component: Component, ...props } = this.props
-        console.log('CHECKING AUTH');
-        console.log(this.props.email);
         return (
             <Route
                 {...props}

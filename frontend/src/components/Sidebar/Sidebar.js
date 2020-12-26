@@ -27,14 +27,14 @@ class Sidebar extends React.Component {
                     {jsx}
                     {/* <li className="menuItem"><NavLink to="/chatbot" activeClassName="active"><i class="fa fa-comments-o" aria-hidden="true"></i>Chatbot</NavLink></li> */}
                 </ul>
-                <GoogleLogout
+                {/* <GoogleLogout
                     clientId="31251792338-rnkbgfrnjoq3d6kshffdlmvp1j3ik904.apps.googleusercontent.com"
                     buttonText="Logout"
                     onLogoutSuccess={this.googleLogout}
                     className="googleLogoutButton"
                     className='googleLogout'
                 >
-                </GoogleLogout>
+                </GoogleLogout> */}
             </div>
         )
     }

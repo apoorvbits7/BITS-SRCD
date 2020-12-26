@@ -50,7 +50,6 @@ class Query extends React.Component {
                     var eDiv = document.createElement('div');
                     eDiv.innerHTML = `<a href="#">` + 'Send Email' + `</a>`;
                     eDiv.addEventListener('click', function () {
-                        console.log(params.value)
                         Swal.fire({
                             title: 'Enter the message you wish to send!',
                             input: 'textarea',
@@ -61,7 +60,7 @@ class Query extends React.Component {
                             confirmButtonText: 'Send',
                             showLoaderOnConfirm: true,
                             preConfirm: (text) => {
-                                return axios.patch('http://172.24.16.87.xip.io:3100/admin/comment/' + params.value, {
+                                return axios.patch('https://srcd-temp.herokuapp.com/admin/comment/' + params.value, {
                                     comment: text
                                 }).then(result => {
                                     return result.data;
@@ -73,7 +72,6 @@ class Query extends React.Component {
                             },
                             allowOutsideClick: () => !Swal.isLoading()
                         }).then((result) => {
-                            console.log(result);
                             if (!result.isDismissed) {
                                 Swal.fire(
                                     'Message Sent!',
@@ -91,7 +89,7 @@ class Query extends React.Component {
     }
 
     async componentDidMount() {
-        let allUploads = await axios.get('http://172.24.16.87.xip.io:3100/admin/all');
+        let allUploads = await axios.get('https://srcd-temp.herokuapp.com/admin/all');
         let counter = 0
         let allUploadsProcessed = allUploads.data.map((upload) => {
             counter += 1
@@ -100,10 +98,10 @@ class Query extends React.Component {
                 title: upload.title,
                 status: upload.status == true ? '✅Processed' : 'Waiting',
                 author: upload.prinInvest,
-                proposal: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/0',
-                commentsOne: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/1',
-                commentsTwo: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/2',
-                endorsments: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/3',
+                proposal: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/0',
+                commentsOne: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/1',
+                commentsTwo: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/2',
+                endorsments: 'https://srcd-temp.herokuapp.com/sub/' + upload._id + '/3',
                 date: new Date().toLocaleDateString(),
                 reply: upload._id,
                 department: upload.department,
@@ -149,7 +147,6 @@ class Query extends React.Component {
         // this.refs.agGrid.api.sizeColumnsToFit()
     }
     rowClickHandle = (e) => {
-        console.log(e);
         // Swal.fire({
         //     title: '<strong>HTML <u>example</u></strong>',
         //     icon: 'info',

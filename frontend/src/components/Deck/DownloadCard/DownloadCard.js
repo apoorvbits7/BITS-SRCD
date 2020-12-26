@@ -35,8 +35,6 @@ class DownloadCard extends React.Component {
         }
         // showMessage(msg);
         // updatePercent(metadata.percent | 0)
-        console.log(msg);
-        console.log(metadata.percent | 0);
         if (this.state.percentage == 100) {
             setTimeout(() => {
                 this.setState({
@@ -53,13 +51,11 @@ class DownloadCard extends React.Component {
 
     downloadZip = () => {
         let zip = new JSZip();
-        console.log('Hi there!');
         if (this.props.files.length == 0) {
             alert('No files download!');
             return;
         }
         this.props.files.map((file) => {
-            console.log('haah');
             zip.file(file.filename + '-' + new Date().getTime().toString() + '.' + file.download.split('.')[
                 file.download.split('.').length - 1],
                 this.urlToPromise(

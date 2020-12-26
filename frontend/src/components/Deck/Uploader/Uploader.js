@@ -11,7 +11,6 @@ class Uploader extends React.Component {
     }
 
     handleChangeStatus = (f, status) => {
-        console.log(status, f, f.meta)
         if (status == 'done') {
             this.props.uploadFile(this.props.fileType, { ...f })
         } else if (status == "removed") {
@@ -27,23 +26,21 @@ class Uploader extends React.Component {
         })
         let result = await axios({
             method: "POST",
-            url: "http://172.24.16.87.xip.io:3100/submit",
+            url: "https://srcd-temp.herokuapp.com/submit",
             data: filesData,
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
-        console.log(result.data);
         return result.data;
     }
 
     handleSubmit = async (files, allFiles) => {
-        console.log(files.map(f => f.meta.name));
         let newFiles = files.map((file) => {
             return file.file;
         })
         let result = await this.submitFile(newFiles);
-        let url = 'http://172.24.16.87.xip.io:3100/check/' + result.id + '/0';
+        let url = 'https://srcd-temp.herokuapp.com/check/' + result.id + '/0';
         this.props.addFiles(url);
         allFiles.forEach(f => f.remove());
     }

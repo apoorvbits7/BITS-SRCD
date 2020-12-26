@@ -105,7 +105,7 @@ const initState = {
         },
         form: {
             heading: 'Project Submission',
-            text: 'You can use this page to submit a new project to the SRCD. The form has three sections. Basci Details, Scheme and Uploads. Navigate through the sections via the blue sidebar or by using the next button. After filling all the fields, click on submit on the Uploads Page.'
+            text: 'You can use this page to submit a new project to the SRCD. The form has three sections. Basic Details, Scheme and Uploads. Navigate through the sections via the blue sidebar or by using the next button. After filling all the fields, click on submit on the Uploads Page.'
         }
     },
     experiencedFaculty: false
@@ -131,7 +131,7 @@ const rootReducer = produce((draft, action) => {
                     sno: counter,
                     title: project.title,
                     status: 'Waiting',
-                    url: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/0',
+                    url: 'https://srcd-temp.herokuapp.com/sub/' + project._id + '/0',
                     date: new Date().toLocaleDateString()
                 }
             })
@@ -141,7 +141,6 @@ const rootReducer = produce((draft, action) => {
             break;
         case "ADD_FILE":
             files = original(draft).files;
-            console.log(files);
             newFiles = [{
                 id: action.fileID,
                 filename: action.file.meta.name,
@@ -169,7 +168,6 @@ const rootReducer = produce((draft, action) => {
             draft.invoicesProcessed = original(draft).invoicesProcessed + 1;
             break;
         case "SHOW_PREVIEW":
-            console.log(action.url)
             draft.preview.show = true;
             draft.preview.url = action.url;
             break;
@@ -245,7 +243,6 @@ const rootReducer = produce((draft, action) => {
             break
         case "ADD_CO_INVEST":
             currCo = original(draft).coInvestigators.slice();
-            console.log(currCo);
             currCo.splice(action.index + 1, 0, {
                 name: '',
                 designation: '',
