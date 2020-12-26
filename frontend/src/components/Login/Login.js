@@ -11,12 +11,12 @@ class Login extends React.Component {
         // this.props.login(result.data.coins, response.profileObj.googleId);
         let result;
         try {
-            result = await axios.post('https://srcd-temp.herokuapp.com/user/me', {
+            result = await axios.post('http://172.24.16.87.xip.io:3100/user/me', {
                 email: response.profileObj.email
             })
             result = result.data;
         } catch (err) {
-            await axios.post('https://srcd-temp.herokuapp.com/user/new', {
+            await axios.post('http://172.24.16.87.xip.io:3100/user/new', {
                 email: response.profileObj.email,
                 name: response.profileObj.name
             })

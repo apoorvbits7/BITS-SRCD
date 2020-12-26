@@ -131,7 +131,7 @@ const rootReducer = produce((draft, action) => {
                     sno: counter,
                     title: project.title,
                     status: 'Waiting',
-                    url: 'https://srcd-temp.herokuapp.com/sub/' + project._id + '/0',
+                    url: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/0',
                     date: new Date().toLocaleDateString()
                 }
             })

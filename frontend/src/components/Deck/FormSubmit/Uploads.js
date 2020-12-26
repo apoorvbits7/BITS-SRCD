@@ -56,7 +56,7 @@ class Uploads extends React.Component {
         try {
             result = await axios({
                 method: "POST",
-                url: "https://srcd-temp.herokuapp.com/sub/submit",
+                url: "http://172.24.16.87.xip.io:3100/sub/submit",
                 data: filesData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -114,7 +114,7 @@ class Uploads extends React.Component {
         cogoToast.loading('Submitting...')
             .then(async () => {
                 let result = await this.submitFile();
-                let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
+                let url = 'http://172.24.16.87.xip.io:3100/sub/' + result.id + '/0';
                 this.props.addFiles(url);
                 this.setState({
                     loading: false
@@ -129,7 +129,7 @@ class Uploads extends React.Component {
             });
         // let result = await this.submitFile();
         // console.log(result)
-        // let url = 'https://srcd-temp.herokuapp.com/sub/' + result.id + '/0';
+        // let url = 'http://172.24.16.87.xip.io:3100/sub/' + result.id + '/0';
         // this.props.addFiles(url);
         // this.setState({
         //     loading: false
