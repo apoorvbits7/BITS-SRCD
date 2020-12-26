@@ -57,7 +57,7 @@ class Uploads extends React.Component {
         try {
             result = await axios({
                 method: "POST",
-                url: "http://localhost:3100/sub/submit",
+                url: "http://172.24.16.87.xip.io:5000/sub/submit",
                 data: filesData,
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -106,7 +106,7 @@ class Uploads extends React.Component {
         })
         let result = await this.submitFile();
         console.log(result)
-        let url = 'http://localhost:3100/sub/' + result.id + '/0';
+        let url = 'http://172.24.16.87.xip.io:5000/sub/' + result.id + '/0';
         this.props.addFiles(url);
         this.setState({
             loading: false
