@@ -11,6 +11,7 @@ import InfoText from '../InfoText/InfoText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Swal from 'sweetalert2';
 import cogoToast from 'cogo-toast';
+import { withRouter } from "react-router";
 
 class Uploads extends React.Component {
     constructor(props) {
@@ -120,8 +121,11 @@ class Uploads extends React.Component {
                     loading: false
                 })
                 cogoToast.success('Submitted Succesfully!');
+                this.props.history.push("/deck");
+                this.props.resetSubmit();
             })
-            .catch(() => {
+            .catch((err) => {
+                console.error(err);
                 this.setState({
                     loading: false
                 })
@@ -245,8 +249,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: 'EXPERIENCED_FACULTY_CHECK'
             })
+        },
+        resetSubmit: () => {
+            dispatch({
+                type: "RESET_AFTER_SUBMIT"
+            })
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Uploads);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Uploads));

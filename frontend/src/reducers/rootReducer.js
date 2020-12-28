@@ -100,8 +100,8 @@ const initState = {
     }],
     infoTexts: {
         dashboard: {
-            heading: 'Welcome to you Dashboard',
-            text: 'This is your SRCD dashboard. All submissions which you make from the \'New Submission\' page will be reflected over here. You can come back here at any time to see the status of any of your submissions.'
+            heading: 'Welcome to your Dashboard',
+            text: 'This is your SRCD Project Proposal Submission Dashboard. All Project Proposal submissions which you make from the ‘New Submission’ page will be reflected here. You can come back here any time to see the status of your submissions.'
         },
         form: {
             heading: 'Project Submission',
@@ -194,31 +194,31 @@ const rootReducer = produce((draft, action) => {
             }
             break;
         case "FORM_DETAILS_CHANGE":
-            if (action.fullName) {
+            if ('fullName' in action) {
                 draft.formDetails.fullName = action.fullName;
             }
-            if (action.email) {
+            if ('email' in action) {
                 draft.formDetails.email = action.email;
             }
-            if (action.phoneNumber) {
+            if ('phoneNumber' in action) {
                 draft.formDetails.phoneNumber = action.phoneNumber;
             }
-            if (action.paperTitle) {
+            if ('paperTitle' in action) {
                 draft.formDetails.paperTitle = action.paperTitle;
             }
-            if (action.paperAuthors) {
+            if ('paperAuthors' in action) {
                 draft.formDetails.paperAuthors = action.paperAuthors;
             }
-            if (action.designation) {
+            if ('designation' in action) {
                 draft.formDetails.designation = action.designation;
             }
-            if (action.department) {
+            if ('department' in action) {
                 draft.formDetails.department = action.department;
             }
-            if (action.institute) {
+            if ('institute' in action) {
                 draft.formDetails.institute = action.institute;
             }
-            if (action.lastDate) {
+            if ('lastDate' in action) {
                 draft.formDetails.lastDate = action.lastDate;
             }
             break;
@@ -306,6 +306,29 @@ const rootReducer = produce((draft, action) => {
         case "EXPERIENCED_FACULTY_CHECK":
             draft.experiencedFaculty = !original(draft).experiencedFaculty;
             break
+        case "RESET_AFTER_SUBMIT":
+            draft.formDetails = {
+                fullName: '',
+                email: '',
+                phoneNumber: '',
+                paperTitle: '',
+                filePipeline: {
+                    proposal: [],
+                    commentsOne: [],
+                    commentsTwo: [],
+                    edorsements: []
+                },
+                paperAuthors: '',
+                designation: '',
+                department: '',
+                institute: '',
+                lastDate: new Date(),
+                reviewerOneName: '',
+                reviewerTwoName: ''
+            }
+            draft.fundingCall.selected = "";
+            draft.fundingCall.others = "";
+            break;
     }
 }, initState);
 

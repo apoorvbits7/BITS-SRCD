@@ -20,7 +20,7 @@ class Loader extends React.Component {
             statusJSX = '-';
         } else {
             statusJSX = <div>
-                <a href="#" onClick={this.handleClick}>(View)</a>
+                <a href="#" onClick={this.handleClick}>(View Proposal)</a>
             </div>;
         }
         return (
