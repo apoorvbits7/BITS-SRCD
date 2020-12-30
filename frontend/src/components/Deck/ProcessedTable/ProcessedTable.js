@@ -125,7 +125,7 @@ function ProcessedTable(props) {
                     },
                     {
                         Header: 'Date',
-                        accessor: 'date',
+                        accessor: 'lastDate',
                     }
                 ]
             }
@@ -138,7 +138,7 @@ function ProcessedTable(props) {
             <InfoText category="dashboard" />
             <Table columns={columns} data={
                 props.files.length == 0 ?
-                    [{ sno: '-', status: '-', title: '-', url: '-', date: '-' }] :
+                    [{ sno: '-', status: '-', title: '-', url: '-', lastDate: '-' }] :
                     props.files} />
         </Styles>
     )

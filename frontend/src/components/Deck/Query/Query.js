@@ -102,7 +102,7 @@ class Query extends React.Component {
                 commentsOne: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/1',
                 commentsTwo: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/2',
                 endorsments: 'http://172.24.16.87.xip.io:3100/sub/' + upload._id + '/3',
-                date: new Date().toLocaleDateString(),
+                date: new Date(upload.lastDate).toLocaleDateString(),
                 reply: upload._id,
                 department: upload.department,
                 designation: upload.designation,

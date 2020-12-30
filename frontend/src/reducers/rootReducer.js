@@ -127,12 +127,20 @@ const rootReducer = produce((draft, action) => {
             let counter = arr2.length;
             draft.uploadedFiles = action.projects.map((project) => {
                 counter = counter + 1;
+                let lastDate = '-';
+                if (project.lastDate) {
+                    lastDate = new Date(project.lastDate).toLocaleDateString()
+                }
                 return {
                     sno: counter,
                     title: project.title,
                     status: 'Waiting',
                     url: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/0',
-                    date: new Date().toLocaleDateString()
+                    commentsOne: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/1',
+                    commentsTwo: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/2',
+                    endorsments: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/3',
+                    date: new Date().toLocaleDateString(),
+                    lastDate: new Date(project.lastDate).toLocaleDateString()
                 }
             })
             break;

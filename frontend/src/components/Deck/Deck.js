@@ -2,6 +2,7 @@ import React from 'react';
 import './Deck.css';
 import Uploader from './Uploader/Uploader';
 import ProcessedTable from './ProcessedTable/ProcessedTable';
+import ProcessedTable2 from './ProcessedTable/ProcessedTable2';
 import ProcessedViewer from './ProcessedViewer/ProcessedViewer';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
@@ -28,7 +29,8 @@ class Deck extends React.Component {
                         {this.props.uploaderOpen == true && <Uploader />}
                         {this.props.previewShow == true && <ProcessedViewer />}
                         {/* <ProcessedViewer /> */}
-                        <ProcessedTable />
+                        {/* <ProcessedTable /> */}
+                        <ProcessedTable2 />
                     </Route>
                     <Route path="/deck/admin">
                         <Query />
