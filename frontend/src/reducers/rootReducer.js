@@ -237,7 +237,8 @@ const rootReducer = produce((draft, action) => {
                 title: original(draft).formDetails.paperTitle,
                 status: 'Waiting',
                 url: action.url,
-                date: new Date().toLocaleDateString()
+                date: new Date().toLocaleDateString(),
+                lastDate: new Date().toLocaleDateString()
             })
             break;
         case "SELECT_FUNDING_CALL":
