@@ -46,10 +46,10 @@ class Uploads extends React.Component {
         filesData.append('projProp', allFilesProposal);
         filesData.append('endoCert', allFilesEndor);
         filesData.append('prinInvest', this.props.formDetails.paperAuthors)
-        if (this.props.fundingCall.selected) {
+        if (this.props.fundingCall.selected != "Other (specify)") {
             filesData.append('funding', this.props.fundingCall.selected)
         } else {
-            filesData.append('funding', this.props.fundingCall.others)
+            filesData.append('funding', '(Other) ' + this.props.fundingCall.others)
         }
 
         filesData.append('coInvest', coInvest);
