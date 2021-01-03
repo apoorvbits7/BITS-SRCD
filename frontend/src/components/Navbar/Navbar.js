@@ -25,17 +25,19 @@ class Navbar extends React.Component {
                         <img src={bitsLogo} className="bitsLogo" />
                         <span className="title">Project Proposal Submission Portal<span style={{ fontWeight: '500' }}>-SRCD</span></span>
                     </div>
-                    <img src={this.props.profilePic} className="profilePic" />
-                    <div style={{ marginRight: '1%' }}>
-                        <GoogleLogout
-                            clientId="31251792338-rnkbgfrnjoq3d6kshffdlmvp1j3ik904.apps.googleusercontent.com"
-                            buttonText="Logout"
-                            onLogoutSuccess={this.googleLogout}
-                            className="googleLogoutButton"
-                            className='googleLogout'
-                            style={{ marginRight: '5%' }}
-                        >
-                        </GoogleLogout>
+                    <div className="accountContainer">
+                        <img style={{ marginRight: '5%' }} src={this.props.profilePic} className="profilePic" />
+                        <div style={{ marginRight: '1%' }}>
+                            <GoogleLogout
+                                clientId="31251792338-rnkbgfrnjoq3d6kshffdlmvp1j3ik904.apps.googleusercontent.com"
+                                buttonText="Logout"
+                                onLogoutSuccess={this.googleLogout}
+                                className="googleLogoutButton"
+                                className='googleLogout'
+                                style={{ marginRight: '5%' }}
+                            >
+                            </GoogleLogout>
+                        </div>
                     </div>
                 </div>
                 <div className="lineContainer">

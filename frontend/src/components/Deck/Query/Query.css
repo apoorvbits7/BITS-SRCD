@@ -1,0 +1,33 @@
+.adminViewMore {
+    position: fixed;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 10;
+    left: 60%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding:2%;
+    width: 50%;
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    overflow: auto;
+    max-height: 80%;
+}
+
+.adminViewMore .closeButton {
+    position: absolute;
+    right: 5%;
+    cursor: pointer;
+}
+
+.blackOverlayAdmin {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    background-color: black;
+    opacity: 0.5;
+    left: 0;
+    top: 0;
+}

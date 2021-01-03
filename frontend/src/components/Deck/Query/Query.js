@@ -11,38 +11,69 @@ class Query extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            selectedUpload: {},
+            viewMore: false,
             columnDefs: [{
-                headerName: "Principle Invest.", field: "author", sortable: true, filter: true
+                headerName: "PI", field: "author", sortable: true, filter: true
             }, {
                 headerName: "Department", field: "department", sortable: true, filter: true
             }, {
-                headerName: "Designation", field: "designation", sortable: true, filter: true
-            }, {
-                headerName: "Institute", field: "institute", sortable: true, filter: true
-            }, {
-                headerName: "Funding", field: "funding", sortable: true, filter: true
+                headerName: "Title", field: "title", sortable: true, filter: true
             }, {
                 headerName: "Proposal", field: "proposal",
                 cellRenderer: function (params) {
                     return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
                 }
             }, {
-                headerName: "Comments 1", field: "commentsOne",
+                headerName: "Status", field: "status", sortable: true, filter: true,
                 cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    var eDiv = document.createElement('div');
+                    eDiv.innerHTML = `<a href="#">` + params.value + `</a>`;
+                    eDiv.addEventListener('click', function () {
+                        Swal.fire({
+                            title: 'Change Status',
+                            text: 'Would you like to change the status to ' + (params.value == 'Waiting' ? 'Processed' : 'Waiting'),
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#999',
+                            confirmButtonText: 'Change Status!',
+                            preConfirm: () => {
+                                if (params.value == 'Waiting') {
+                                    // this.changeStatus(params.data.original._id, '✅Processed');
+                                    return axios.patch('http://172.24.16.87.xip.io:3100/admin/mark/' + params.data.original._id).
+                                        then(result => {
+                                            return result.data;
+                                        }).catch(error => {
+                                            Swal.showValidationMessage(
+                                                `Request failed: ${error}`
+                                            )
+                                        });
+                                } else {
+                                    // this.changeStatus(params.data.original._id, 'Waiting');
+                                    return axios.patch('http://172.24.16.87.xip.io:3100/admin/unmark/' + params.data.original._id).
+                                        then(result => {
+                                            return result.data;
+                                        }).catch(error => {
+                                            Swal.showValidationMessage(
+                                                `Request failed: ${error}`
+                                            )
+                                        });
+                                }
+
+                            },
+                            allowOutsideClick: () => !Swal.isLoading()
+                        }).then((result) => {
+                            if (!result.isDismissed) {
+                                Swal.fire(
+                                    'Status Changed!',
+                                    'Reload to see result',
+                                    'success'
+                                )
+                            }
+                        })
+                    })
+                    return eDiv;
                 }
-            }, {
-                headerName: "Comments 2", field: "commentsTwo",
-                cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
-                }
-            }, {
-                headerName: "Endorsements", field: "endorsments",
-                cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
-                }
-            }, {
-                headerName: "Status", field: "status", sortable: true, filter: true
             },
             {
                 headerName: "Reply", field: "reply",
@@ -83,9 +114,36 @@ class Query extends React.Component {
                     })
                     return eDiv;
                 }
+            }, {
+                headerName: "View More", field: "viewMore",
+                cellRenderer: (params) => {
+                    var eDiv = document.createElement('div');
+                    eDiv.innerHTML = `<a href="#">` + 'View More' + `</a>`;
+                    eDiv.addEventListener('click', () => { this.handleViewMore(params) })
+                    return eDiv;
+                }
             }],
             rowData: []
         }
+    }
+
+    changeStatus = (id, status) => {
+        this.state.rowData.map((row, index) => {
+            if (row.original._id == id) {
+                this.state.rowData[index] = {
+                    ...this.state.rowData[index],
+                    status: status
+                }
+            }
+        })
+    }
+
+    handleViewMore = (params) => {
+        console.log(params);
+        this.setState({
+            viewMore: true,
+            selectedUpload: params.data
+        })
     }
 
     async componentDidMount() {
@@ -108,43 +166,15 @@ class Query extends React.Component {
                 designation: upload.designation,
                 funding: upload.funding,
                 institute: upload.institute,
-                original: upload
+                original: upload,
+                coInvest: upload.coInvest,
+                experiencedFaculty: upload.experiencedFaculty
             }
         })
-        // let allUploadsProcessed = [
-        //     {
-        //         author: 'X',
-        //         proposal: 'www.google.com',
-        //         comments: 'www.google.com',
-        //         endorsments: 'www.google.com',
-        //         status: 'Pending'
-        //     },
-        //     {
-        //         author: 'Y',
-        //         proposal: 'www.google.com',
-        //         comments: 'www.google.com',
-        //         endorsments: 'www.google.com',
-        //         status: 'Pending'
-        //     },
-        //     {
-        //         author: 'Y',
-        //         proposal: 'www.google.com',
-        //         comments: 'www.google.com',
-        //         endorsments: 'www.google.com',
-        //         status: 'Pending'
-        //     },
-        //     {
-        //         author: 'X',
-        //         proposal: 'www.google.com',
-        //         comments: 'www.google.com',
-        //         endorsments: 'www.google.com',
-        //         status: 'Pending'
-        //     },
-        // ]
         this.setState({
             rowData: allUploadsProcessed
         })
-        // this.refs.agGrid.api.sizeColumnsToFit()
+        this.refs.agGrid.api.sizeColumnsToFit()
     }
     rowClickHandle = (e) => {
         // Swal.fire({
@@ -156,6 +186,11 @@ class Query extends React.Component {
         //     showCloseButton: true
         // })
     }
+    handleViewMoreClose = () => {
+        this.setState({
+            viewMore: false
+        })
+    }
     render() {
         return (
             <div
@@ -164,6 +199,41 @@ class Query extends React.Component {
                     height: '90%'
                 }}
             >
+                <div className="blackOverlayAdmin" style={{ display: this.state.viewMore ? 'block' : 'none' }}></div>
+                <div className="adminViewMore" style={{ display: this.state.viewMore ? 'block' : 'none' }}>
+                    <i onClick={this.handleViewMoreClose} className=" closeButton fa fa-times" aria-hidden="true"></i>
+                    <span><b>Title: </b>{this.state.selectedUpload.title}</span><br></br>
+                    <span><b>Status: </b>{this.state.selectedUpload.status}</span><br></br>
+                    <span><b>Author: </b>{this.state.selectedUpload.author}</span><br></br>
+                    <span><b>Experienced Faculty: </b>{this.state.selectedUpload.experiencedFaculty ? 'YES (no comments needed)' : 'NO'}</span><br></br>
+                    <span><b>Proposal: </b><a href={this.state.selectedUpload.proposal} target="_blank">link</a></span><br></br>
+                    {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments One: </b><a href={this.state.selectedUpload.commentsOne} target="_blank">link</a></span><br></br></>}
+                    {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments Two: </b><a href={this.state.selectedUpload.commentsTwo} target="_blank">link</a></span><br></br></>}
+                    <span><b>Endorsements: </b><a href={this.state.selectedUpload.endorsments} target="_blank">link</a></span><br></br>
+                    <span><b>Date: </b>{this.state.selectedUpload.date}</span><br></br>
+                    <span><b>Department: </b>{this.state.selectedUpload.department}</span><br></br>
+                    <span><b>Designation: </b>{this.state.selectedUpload.designation}</span><br></br>
+                    <span><b>Funding: </b>{this.state.selectedUpload.funding}</span><br></br>
+                    <span><b>Institute: </b>{this.state.selectedUpload.institute}</span><br></br>
+                    <br></br>
+                    <span><b>Co Investors: </b></span><br></br>
+                    {this.state.viewMore && this.state.selectedUpload.coInvest.map((row, index) => {
+                        if (!row) return;
+                        row = JSON.parse(row);
+                        return (
+                            <div>
+                                <b>{index + 1 + '.'}</b><br></br>
+                                <span><b>Name: </b>{row.name}</span><br></br>
+                                <span><b>Designation: </b>{row.designation}</span><br></br>
+                                <span><b>Department: </b>{row.department}</span><br></br>
+                                <span><b>Institute: </b>{row.institute}</span><br></br>
+                                <br></br>
+                            </div>
+
+
+                        );
+                    })}
+                </div>
                 <AgGridReact
                     ref="agGrid"
                     columnDefs={this.state.columnDefs}

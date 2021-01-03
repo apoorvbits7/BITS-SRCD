@@ -42,6 +42,13 @@ class Uploads extends React.Component {
         //     filesData.append('docs', file);
         // })
         let coInvest = this.props.coInvestigators;
+        coInvest = coInvest.filter((x) => {
+            if (x.name || x.designation || x.department || x.institute) {
+                return true;
+            } else {
+                return false;
+            }
+        })
         coInvest = coInvest.map((x) => JSON.stringify(x));
         filesData.append('projProp', allFilesProposal);
         filesData.append('endoCert', allFilesEndor);
@@ -53,6 +60,7 @@ class Uploads extends React.Component {
         }
 
         filesData.append('coInvest', coInvest);
+        filesData.append('experiencedFaculty', this.props.experiencedFaculty);
         let result;
         try {
             result = await axios({

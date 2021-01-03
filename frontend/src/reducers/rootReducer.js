@@ -292,16 +292,16 @@ const rootReducer = produce((draft, action) => {
             draft.fundingCall.others = action.others
             break
         case "CO_INVEST_DETAILS_CHANGE":
-            if (action.name) {
+            if ('name' in action) {
                 draft.coInvestigators[action.index].name = action.name
             }
-            if (action.designation) {
+            if ('designation' in action) {
                 draft.coInvestigators[action.index].designation = action.designation
             }
-            if (action.department) {
+            if ('department' in action) {
                 draft.coInvestigators[action.index].department = action.department
             }
-            if (action.institute) {
+            if ('institute' in action) {
                 draft.coInvestigators[action.index].institute = action.institute
             }
             break;
