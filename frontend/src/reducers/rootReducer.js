@@ -131,16 +131,22 @@ const rootReducer = produce((draft, action) => {
                 if (project.lastDate) {
                     lastDate = new Date(project.lastDate).toLocaleDateString()
                 }
+                let commentsOne = 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/1';
+                let commentsTwo = 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/2';
+                if (project.experiencedFaculty) {
+                    commentsOne = '-';
+                    commentsTwo = '-';
+                }
                 return {
                     sno: counter,
                     title: project.title,
-                    status: 'Waiting',
                     url: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/0',
-                    commentsOne: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/1',
-                    commentsTwo: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/2',
+                    commentsOne: commentsOne,
+                    commentsTwo: commentsTwo,
                     endorsments: 'http://172.24.16.87.xip.io:3100/sub/' + project._id + '/3',
                     date: new Date().toLocaleDateString(),
-                    lastDate: new Date(project.lastDate).toLocaleDateString()
+                    lastDate: new Date(project.lastDate).toLocaleDateString(),
+                    status: project.status ? '✅Processed' : 'Waiting'
                 }
             })
             break;
@@ -238,7 +244,11 @@ const rootReducer = produce((draft, action) => {
                 status: 'Waiting',
                 url: action.url,
                 date: new Date().toLocaleDateString(),
-                lastDate: new Date().toLocaleDateString()
+                lastDate: new Date().toLocaleDateString(),
+                commentsOne: 'Reload',
+                commentsTwo: 'Reload',
+                url: 'Reload',
+                endorsments: 'Reload'
             })
             break;
         case "SELECT_FUNDING_CALL":

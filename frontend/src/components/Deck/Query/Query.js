@@ -205,7 +205,7 @@ class Query extends React.Component {
                     <span><b>Title: </b>{this.state.selectedUpload.title}</span><br></br>
                     <span><b>Status: </b>{this.state.selectedUpload.status}</span><br></br>
                     <span><b>Author: </b>{this.state.selectedUpload.author}</span><br></br>
-                    <span><b>Experienced Faculty: </b>{this.state.selectedUpload.experiencedFaculty ? 'YES (no comments needed)' : 'NO'}</span><br></br>
+                    <span><b>Internal Review Exempted: </b>{this.state.selectedUpload.experiencedFaculty ? 'YES (no comments needed)' : 'NO'}</span><br></br>
                     <span><b>Proposal: </b><a href={this.state.selectedUpload.proposal} target="_blank">link</a></span><br></br>
                     {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments One: </b><a href={this.state.selectedUpload.commentsOne} target="_blank">link</a></span><br></br></>}
                     {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments Two: </b><a href={this.state.selectedUpload.commentsTwo} target="_blank">link</a></span><br></br></>}
@@ -216,7 +216,7 @@ class Query extends React.Component {
                     <span><b>Funding: </b>{this.state.selectedUpload.funding}</span><br></br>
                     <span><b>Institute: </b>{this.state.selectedUpload.institute}</span><br></br>
                     <br></br>
-                    <span><b>Co Investors: </b></span><br></br>
+                    <span><b>Co PI: </b></span><br></br>
                     {this.state.viewMore && this.state.selectedUpload.coInvest.map((row, index) => {
                         if (!row) return;
                         row = JSON.parse(row);

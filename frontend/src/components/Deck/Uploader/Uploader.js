@@ -12,6 +12,7 @@ class Uploader extends React.Component {
 
     handleChangeStatus = (f, status) => {
         if (status == 'done') {
+            console.log(f);
             this.props.uploadFile(this.props.fileType, { ...f })
         } else if (status == "removed") {
             this.props.deleteFile(this.props.fileType, { ...f })
@@ -65,6 +66,7 @@ class Uploader extends React.Component {
                     }
                 }}
                 inputContent="Upload or Drag Documents"
+                accept=".pdf"
             />
         )
     }

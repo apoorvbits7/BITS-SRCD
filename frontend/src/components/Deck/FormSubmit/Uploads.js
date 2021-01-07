@@ -170,9 +170,9 @@ class Uploads extends React.Component {
                     <FormNav />
                     <div className="formDetails">
                         <div className="inputFields">
-                            <span style={{ fontSize: '1.2rem' }} className="info">Project Proposal Summary (incl Budget)</span>
+                            <span style={{ fontSize: '1.2rem' }} className="info">Project Proposal Summary (incl Budget) [PDF]</span>
                             <Uploader fileType="proposal" />
-                            <span style={{ fontSize: '1.2rem' }} className="info">Endorsement Certificates</span>
+                            <span style={{ fontSize: '1.2rem' }} className="info">Endorsement Certificates [PDF]</span>
                             <Uploader fileType="edorsements" />
                             <p style={{ textAlign: 'left', marginBottom: 0 }}>Faculty with experience of having obtained 2 or more major projects (each Rs 25 lakhs or above) in last 5 years as PI, may be
                             exempted from technical review at the Department level, if they request for the same. If you are eligible and wish to request for
@@ -195,7 +195,7 @@ class Uploads extends React.Component {
                                 onChange={(e) => { this.props.reviewerNameChange(1, e) }}
                                 style={{ display: reviewerDisplay }}
                             />
-                            <span style={{ fontSize: '1.2rem', display: reviewerDisplay }} className="info">Reviewer 1 Comments</span>
+                            <span style={{ fontSize: '1.2rem', display: reviewerDisplay }} className="info">Reviewer 1 Comments [PDF]</span>
                             {!this.props.experiencedFaculty && <Uploader fileType="commentsOne" />}
                             <TextField
                                 id="outlined-basic"
@@ -207,7 +207,7 @@ class Uploads extends React.Component {
                                 onChange={(e) => { this.props.reviewerNameChange(2, e) }}
                                 style={{ display: reviewerDisplay }}
                             />
-                            <span style={{ fontSize: '1.2rem', display: reviewerDisplay }} className="info">Reviewer 2 Comments</span>
+                            <span style={{ fontSize: '1.2rem', display: reviewerDisplay }} className="info">Reviewer 2 Comments [PDF]</span>
                             {!this.props.experiencedFaculty && <Uploader fileType="commentsTwo" />}
                         </div>
                         <div className="lastRow">

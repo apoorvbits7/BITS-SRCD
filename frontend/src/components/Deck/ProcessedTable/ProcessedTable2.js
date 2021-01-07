@@ -21,22 +21,42 @@ class ProcessedTable2 extends React.Component {
             }, {
                 headerName: "Proposal", field: "url",
                 cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    if (params.value == 'Reload') {
+                        return '<span>Reload</span>';
+                    } else {
+                        return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    }
                 }
             }, {
                 headerName: "Comments 1", field: "commentsOne",
                 cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    if (params.value == '-') {
+                        return '<span>-</span>'
+                    } else if (params.value == 'Reload') {
+                        return '<span>Reload</span>';
+                    } else {
+                        return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    }
                 }
             }, {
                 headerName: "Comments 2", field: "commentsTwo",
                 cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    if (params.value == '-') {
+                        return '<span>-</span>';
+                    } else if (params.value == 'Reload') {
+                        return '<span>Reload</span>';
+                    } else {
+                        return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    }
                 }
             }, {
                 headerName: "Endorsements", field: "endorsments",
                 cellRenderer: function (params) {
-                    return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    if (params.value == 'Reload') {
+                        return '<span>Reload</span>';
+                    } else {
+                        return `<a href="${params.value}" target="_blank">` + 'link' + `</a>`
+                    }
                 }
             }, {
                 headerName: "Date", field: "lastDate", sortable: true, filter: true
