@@ -210,7 +210,7 @@ class Query extends React.Component {
                     {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments One: </b><a href={this.state.selectedUpload.commentsOne} target="_blank">link</a></span><br></br></>}
                     {!this.state.selectedUpload.experiencedFaculty && <><span><b>Comments Two: </b><a href={this.state.selectedUpload.commentsTwo} target="_blank">link</a></span><br></br></>}
                     <span><b>Endorsements: </b><a href={this.state.selectedUpload.endorsments} target="_blank">link</a></span><br></br>
-                    <span><b>Date: </b>{this.state.selectedUpload.date}</span><br></br>
+                    <span><b>Last date given by Funding Agency: </b>{this.state.selectedUpload.date}</span><br></br>
                     <span><b>Department: </b>{this.state.selectedUpload.department}</span><br></br>
                     <span><b>Designation: </b>{this.state.selectedUpload.designation}</span><br></br>
                     <span><b>Funding: </b>{this.state.selectedUpload.funding}</span><br></br>
