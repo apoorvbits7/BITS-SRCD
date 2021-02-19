@@ -15,7 +15,7 @@ class FormNav extends React.Component {
                         Basic Details
                     </NavLink>
                     <NavLink exact to="/deck/form/paper-details" className="pageLabel" activeClassName="active">
-                        Scheme
+                        More Details
                     </NavLink>
                     <NavLink exact to="/deck/form/uploads" className="pageLabel" activeClassName="active">
                         Uploads

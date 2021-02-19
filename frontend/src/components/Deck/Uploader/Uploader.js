@@ -65,7 +65,7 @@ class Uploader extends React.Component {
                         display: 'none'
                     }
                 }}
-                inputContent="Upload or Drag Documents"
+                inputContent="Upload or Drag and Drop"
                 accept=".pdf"
             />
         )
