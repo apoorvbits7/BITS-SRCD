@@ -105,7 +105,7 @@ const initState = {
         },
         form: {
             heading: 'Project Submission',
-            text: 'You can use this page to submit a new project to the SRCD. The form has three sections. Basic Details, Scheme and Uploads. Navigate through the sections via the blue sidebar or by using the next button. After filling all the fields, click on submit on the Uploads Page.'
+            text: 'You can use this page to submit a new project to the SRCD. The form has three sections. Basic Details, More Details and Uploads. Navigate through the sections via the blue sidebar or by using the next button. After filling all the fields, click on submit on the Uploads Page.'
         }
     },
     experiencedFaculty: false
