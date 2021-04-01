@@ -4,6 +4,7 @@ import bitsLogo from '../../assets/img/bits-logo.png';
 import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import cogoToast from 'cogo-toast';
 
 class Login extends React.Component {
     googleLoginSuccess = async (response) => {
@@ -11,6 +12,10 @@ class Login extends React.Component {
         // this.props.login(result.data.coins, response.profileObj.googleId);
         let result;
         try {
+            if (!response.profileObj.email.includes('@pilani.bits-pilani.ac.in')) {
+                cogoToast.error("Please login with BITS email!");
+                return;
+            }
             result = await axios.post('http://172.24.16.87.xip.io:3100/user/me', {
                 email: response.profileObj.email
             })
