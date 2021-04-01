@@ -23,7 +23,7 @@ class Login extends React.Component {
             result = []
         }
         let admin = false;
-        if (response.profileObj.email == 'srcdonline@pilani.bits-pilani.ac.in' || response.profileObj.email == 'bitssrcd@gmail.com') {
+        if (response.profileObj.email == 'srcdonline@pilani.bits-pilani.ac.in') {
             admin = true;
         }
         this.props.login(response.profileObj.email, response.profileObj.name, result, response.profileObj.imageUrl, admin);
